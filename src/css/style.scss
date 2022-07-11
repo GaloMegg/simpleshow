@@ -1,0 +1,49 @@
+/**
+ * EXAMPLE CONTENT
+ * Feel free to remove it.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;300;400;500;600;700&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+}
+
+.svgBg {
+	height: 80vh;
+
+}
+
+.mainContent {
+	// background-image: url("../assets/images/hanger_background.svg");
+	// background-size: contain;
+	// background-repeat: no-repeat;
+	// background-position: center;
+	height: 100vh;
+	width: 100%;
+}
+
+#app {
+	text-align: center;
+
+	h1 {
+		font-size: 4rem;
+		font-weight: 400;
+		text-transform: uppercase;
+	}
+
+	.intro-image {
+		display: block;
+		max-width: 80vw;
+		height: 70vh;
+		margin: auto;
+	}
+}
+
+@import "startSlide";

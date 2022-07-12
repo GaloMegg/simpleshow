@@ -15,19 +15,8 @@ body {
 	font-family: 'Yanone Kaffeesatz', sans-serif;
 }
 
-.svgBg {
-	height: 80vh;
 
-}
 
-.mainContent {
-	// background-image: url("../assets/images/hanger_background.svg");
-	// background-size: contain;
-	// background-repeat: no-repeat;
-	// background-position: center;
-	height: 100vh;
-	width: 100%;
-}
 
 #app {
 	text-align: center;
@@ -46,4 +35,6 @@ body {
 	}
 }
 
-@import "startSlide";
+@import "./startSlide";
+@import "./mainContent";
+@import "./finalSlide";

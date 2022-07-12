@@ -1,15 +1,16 @@
 import { SVG_PART, FINAL_SVG } from './svgContent'
-export function initialRender(exist) {
-	if (exist) {
-		document.querySelector('.mainContent').innerHTML = SVG_PART;
-	} else {
-		const puzzle = document.createElement('section');
-		puzzle.classList.add('mainContent');
-		puzzle.innerHTML = SVG_PART;
-		document.querySelector('#app').appendChild(puzzle);
-	}
+import instruction_box from '../assets/images/instruction_box.svg'
+export function initialRender() {
+	const div = document.createElement('div');
+	const puzzle = document.createElement('section');
+	puzzle.classList.add('mainContent');
+	puzzle.innerHTML = SVG_PART;
+	div.innerHTML = `<img class="instruction" src=${instruction_box} alt="Our mech pilots are at the ready! But	before they launch, we need to construct the simpleMech X! Drag & Drop its parts to complete its build.">`;
+	document.querySelector('#app').appendChild(puzzle);
+	puzzle.appendChild(div);
 	selectorDraggable()
 }
+
 function selectorDraggable() {
 	let robotParts = [
 		{
@@ -53,8 +54,6 @@ function selectorDraggable() {
 	robotParts.forEach(p => {
 		$(`#${p.partName}`).draggable({
 			cursor: "grabbing",
-			refreshPositions: true,
-			cursorAt: { top: 17, left: 17 },
 			drag: (_, { position }) => {
 				const { left, top } = position
 				$(`#${p.partName}`).draggable({
@@ -74,21 +73,27 @@ function selectorDraggable() {
 					checkFinished(robotParts)
 				}
 			},
-		})
+		}).addClass('part')
 	});
 }
 
 function checkFinished(robotParts) {
 	if (robotParts.every(p => p.isItMounted)) {
+		document.querySelector('.mainContent').remove();
+		const div = document.createElement('div');
 		const finalSlide = document.createElement('section');
+		finalSlide.appendChild(div);
 		finalSlide.classList.add('finalSlide');
-		finalSlide.innerHTML = FINAL_SVG;
+		div.innerHTML = FINAL_SVG;
 		document.querySelector('#app').appendChild(finalSlide);
-		document.getElementById("x").addEventListener('click', clearFinalSlide);
+		document.querySelector('#x').addEventListener('click', clearFinalSlide);
 	}
 }
 
-function clearFinalSlide() {
-	document.querySelector('.finalSlide').remove();
-	initialRender(true);
+export function clearFinalSlide() {
+	let finalSlide = document.querySelector('.finalSlide')
+	if (finalSlide) {
+		finalSlide.remove();
+		initialRender()
+	}
 }

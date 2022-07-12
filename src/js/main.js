@@ -1,9 +1,6 @@
-import { buildStartSlide } from './startSlide.js';
-import { initialRender } from './mainContent.js';
+import { buildStartSlide, clearSlide } from './startSlide';
+import { clearFinalSlide } from './mainContent';
 
+document.addEventListener('DOMContentLoaded', () => { buildStartSlide(); });
 
-document.addEventListener('DOMContentLoaded', () => {
-  initialRender();
-  // buildStartSlide();
-});
-
+document.addEventListener('keydown', (e) => { if (e.key === 'Enter') { clearSlide() } else if (e.key === 'Escape') { clearFinalSlide() } }); 
